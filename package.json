@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "name": "wagmore",
+  "version": "1.0.0",
+  "dependencies": {
+    "next": "^4.1.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {},
+  "author": "Ryan Maas",
+  "license": "Copyright Ryan Maas 2017 - All Rights Reserved",
+  "description": "Homework for Rover.com interview"
+}
