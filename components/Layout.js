@@ -15,7 +15,7 @@ import {
 import Footer from "./Footer/Footer.js"
 import LinkFixer from "../utils/LinkFixer"
 
-export default ({ children, title = "Ryan Maas Interview" }) => (
+const Layout = ({ children, title = "Ryan Maas - Interview" }) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -62,3 +62,5 @@ export default ({ children, title = "Ryan Maas Interview" }) => (
     </Grid>
   </div>
 )
+
+export default Layout
