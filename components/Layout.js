@@ -13,6 +13,7 @@ import {
   Col
 } from "react-bootstrap"
 import Footer from "./Footer/Footer.js"
+import LinkFixer from "../utils/LinkFixer"
 
 export default ({ children, title = "Ryan Maas Interview" }) => (
   <div>
@@ -20,6 +21,7 @@ export default ({ children, title = "Ryan Maas Interview" }) => (
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      {/* ugly ugly ugly - but for some reason import and require did not work...*/}
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -31,17 +33,17 @@ export default ({ children, title = "Ryan Maas Interview" }) => (
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/" className="navbar-brand">
-              Wagmore
-            </a>
+            <LinkFixer href="/" prefetch>
+              <a className="navbar-brand">Wagmore</a>
+            </LinkFixer>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem href="/search" eventKey={1}>
-              Search
-            </NavItem>
+            <LinkFixer href="/search" prefetch>
+              <NavItem eventKey={1}>Search</NavItem>
+            </LinkFixer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
