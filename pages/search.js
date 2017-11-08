@@ -3,8 +3,8 @@ import { Provider } from "mobx-react"
 import { getOrCreateStore } from "../stores/SearchStore"
 
 import Layout from "../components/Layout"
-import SearchBox from "../components/SearchBox/SearchBox.js"
-import SearchResult from "../components/SearchResult/SearchResult.js"
+import SearchBox from "../components/SearchBox"
+import SearchResult from "../components/SearchResult"
 
 export default class Search extends React.Component {
   static getInitialProps({ req }) {
