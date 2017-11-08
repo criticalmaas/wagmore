@@ -32,17 +32,17 @@ class SearchStore {
   async fetch() {
     // eslint-disable-next-line no-undef
     const res = await fetch(
-      "https://www.rover.com/api/v3/search/overnight-boarding/?centerlat=47.7993186&centerlng=-122.3096406"
+      `https://www.rover.com/api/v3/search/overnight-boarding/?centerlat=${this
+        .centerlat}&centerlng=${this.centerlng}`
     )
     const json = await res.json()
     runInAction(() => {
-      console.log(json.results)
       this.results = json.results
     })
   }
 
   disposable = autorun(() => {
-    console.log("in autorun - somethings changed", this.results)
+    //console.log("in autorun - somethings changed", this.results)
   })
 }
 
