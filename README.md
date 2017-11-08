@@ -23,3 +23,30 @@ Use our [Search API](/search-api.md) endpoint to fetch a list of search results 
 Once you have met the core requirements, this is your chance to show us what you're really capable of. Please add a feature or embellishment of your choosing. It doesn't have to be time consuming, just something to showcase your unique talents. Please make sure it doesn't compromise the core requirements.
 
 Please include a README.md describing your design and implementation choices, and with instructions on using your app. We expect to hear back from you within a week.
+
+## How to Install Wagmore ##
+
+1. from the terminal run: `npm install` or `npm i`
+
+## How to Run Wagmore in DEV ##
+
+1. from the terminal run: `npm run dev`
+
+Note: When running in dev mode HMR will be enabled and all calls will be made to the server
+
+## How to Run Wagmore in PROD ##
+
+1. Option 1: (Needs some form of web server) From the terminal run: `npm run build` or `npm run start`
+
+2. Option 2: Using Now from Zeit.co - from the terminal type `now`. You can optionally alias your deployment to a more human readable URL as needed using the `now alias {deploymeny} {your alias}` command
+
+Note: The process.env.NODE_ENV environment variable must be set to 'production'
+
+Note: The latest production version is running at https://wagmore.now.sh but you can deploy to where ever you please
+
+## Why are you running your own node server? ##
+
+1. Per the documentation from [https://github.com/mobxjs/mobx-react#server-side-rendering-with-usestaticrendering] | (Mobx)
+
+### All work submitted is Copyright &copy; 2017 Ryan Maas - All rights reserved ###
+
