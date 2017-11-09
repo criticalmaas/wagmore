@@ -36,6 +36,9 @@ Note: When running in dev mode HMR will be enabled and all calls will be made to
 
 ## How to Run Wagmore in PROD ##
 
+1. Firstly, and hugely, the API server will need to have 'Access-Control-Allow-Origin=*' sent back in the response
+in order to allow cross origin requests (CORS)
+
 1. Option 1: (Needs some form of web server) From the terminal run: `npm run build` or `npm run start`
 
 2. Option 2: Using Now from Zeit.co - from the terminal type `now`. You can optionally alias your deployment to a more human readable URL as needed using the `now alias {deploymeny} {your alias}` command
@@ -47,6 +50,24 @@ Note: The latest production version is running at https://wagmore.now.sh but you
 ## Why are you running your own node server? ##
 
 1. Per the documentation from [https://github.com/mobxjs/mobx-react#server-side-rendering-with-usestaticrendering] | (Mobx)
+
+## glaring missing pieces :o( ##
+
+1. Calendar
+
+2. Form field validation
+
+3. Better breakout of components
+
+4. Styleguist is now broken renderign SearchResult component with addition of MobX provider
+
+5. Integration testing - wanted to use Cypress
+
+6. CORS support in Prod. Currently using a public proxy
+
+7. requestAnimationFrame warning in test
+
+
 
 ### All work submitted is Copyright &copy; 2017 Ryan Maas - All rights reserved ###
 

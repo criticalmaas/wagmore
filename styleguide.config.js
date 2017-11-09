@@ -14,15 +14,11 @@ module.exports = {
   ],
   webpackConfig: {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js(\?[^?]*)?$/,
-          loader: "babel-loader",
-          exclude: /node_modules/,
-          query: {
-            cacheDirectory: true,
-            presets: ["react", "es2015", "stage-2"]
-          }
+          exclude: /(node_modules|bower_components)/,
+          loader: "babel-loader"
         },
         {
           test: /\.css$/,
