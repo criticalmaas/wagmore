@@ -55,18 +55,27 @@ Note: The latest production version is running at https://wagmore.now.sh but you
 
 1. Calendar
 
-2. Form field validation
+2. Form field validation - only basic validation is being done
 
-3. Better breakout of components - SearchBox could br broken down into smaller pieces
+3. Server error handling
 
-4. Styleguist is now broken renderign SearchResult component with addition of MobX provider
+4. Better breakout of components - SearchBox could br broken down into smaller pieces
 
-5. Integration testing - wanted to use Cypress
+5. Styleguist is now broken due to SearchResult component with MobX provider
 
 6. CORS support in Prod. Currently using a public proxy
 
 7. requestAnimationFrame warning in test
 
+8. "no result found"
+
+9. loading spinner
+
+10. large text truncation 
+
+11. Integration testing - wanted to use Cypress
+
+12. Better/More unit testing.
 
 
 ### All work submitted is Copyright &copy; 2017 Ryan Maas - All rights reserved ###

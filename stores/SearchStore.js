@@ -1,5 +1,6 @@
 import { useStrict, action, observable, computed, runInAction } from "mobx"
 import "isomorphic-fetch"
+import moment from "moment"
 
 useStrict(true)
 
@@ -8,19 +9,45 @@ useStrict(true)
 
 let store = null
 
-class SearchStore {
+export default class SearchStore {
   @observable results = []
-  @observable dropOff = Date.now()
+  @observable dropOff = this.today()
   @observable pickUp = this.tomorrow()
   @observable priceLow = 0
   @observable priceHigh = 150
 
+  DATE_FORMAT = "YYYY-MM-DD"
+
   centerlat = "47.7993186"
   centerlng = "-122.3096406"
 
+  today() {
+    return moment(Date.now()).format(this.DATE_FORMAT)
+  }
+
   tomorrow() {
-    let tomorrow = new Date()
-    return tomorrow.setDate(tomorrow.getDate() + 1)
+    return moment(Date.now())
+      .add(1, "d")
+      .format(this.DATE_FORMAT)
+  }
+
+  @computed
+  get areDatesValid() {
+    const dateFormatRegEx = new RegExp(/^\d{4}-\d{2}-\d{2}$/)
+    return dateFormatRegEx.test(this.dropOff) &&
+      dateFormatRegEx.test(this.pickUp)
+      ? true
+      : false
+  }
+
+  @computed
+  get arePricesValid() {
+    return this.priceLow >= 0 &&
+      this.priceLow <= 149 &&
+      this.priceHigh >= 1 &&
+      this.priceHigh <= 150
+      ? true
+      : false
   }
 
   @computed
@@ -29,6 +56,8 @@ class SearchStore {
       query: {
         start_date: this.dropOff,
         end_date: this.pickUp,
+        minprice: this.priceLow,
+        maxprice: this.priceHigh,
         centerlat: this.centerlat,
         centerlng: this.centerlng
       }
@@ -36,8 +65,16 @@ class SearchStore {
     return qs
   }
 
+  // these two functions could be refactored into a single function
+  // along with a change to binding the handleChange function to pass in
+  // 'type' parameter
   @action
   setPropertyValue(prop, val) {
+    this[prop] = val
+  }
+
+  @action
+  setDateValue(prop, val) {
     this[prop] = val
   }
 
@@ -64,11 +101,16 @@ class SearchStore {
     )
     const json = await res.json()
     runInAction(() => {
-      this.results = json.results
+      if (json.results) {
+        this.results = json.results.sort(function(a, b) {
+          return a.price - b.price
+        })
+      }
     })
   }
 }
 
+//TODO: needs testing...
 export function encodeQueryString(params) {
   var pairs = []
   Object.keys(params).forEach(k => {

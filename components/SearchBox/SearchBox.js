@@ -35,6 +35,11 @@ const SearchBox = ({ searchStore }) => {
     searchStore.fetch()
   }
 
+  const handleDateChange = e => {
+    let el = e.target
+    searchStore.setDateValue(el.name, el.value)
+  }
+
   const handleChange = e => {
     let el = e.target
     searchStore.setPropertyValue(el.name, el.value)
@@ -47,6 +52,17 @@ const SearchBox = ({ searchStore }) => {
           .foo {
             margin-bottom: 10px;
           }
+        }
+
+        input:invalid,
+        input:focus:invalid {
+          /* insert your own styles for invalid form input */
+          border: solid 2px red;
+        }
+
+        input:valid,
+        input:focus:valid {
+          border: 1px solid #ccc;
         }
       `}</style>
 
@@ -68,9 +84,11 @@ const SearchBox = ({ searchStore }) => {
                     >
                       <FormControl
                         type="text"
-                        placeholder="mm/dd/yyy"
+                        placeholder="YYYY-MM-DD"
                         name="dropOff"
-                        onChange={handleChange}
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        value={searchStore.dropOff}
+                        onChange={handleDateChange}
                       />
                     </OverlayTrigger>
                   </InputGroup>
@@ -85,9 +103,11 @@ const SearchBox = ({ searchStore }) => {
                     >
                       <FormControl
                         type="text"
-                        placeholder="mm/dd/yyy"
+                        placeholder="YYYY-MM-DD"
                         name="pickUp"
-                        onChange={handleChange}
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        value={searchStore.pickUp}
+                        onChange={handleDateChange}
                       />
                     </OverlayTrigger>
                   </InputGroup>
@@ -102,8 +122,10 @@ const SearchBox = ({ searchStore }) => {
                     <InputGroup.Addon>Low&nbsp;</InputGroup.Addon>
                     <FormControl
                       type="text"
-                      placeholder="in dollars"
+                      placeholder="in dollars (min $0)"
                       name="priceLow"
+                      pattern="\d{1,3}"
+                      value={searchStore.priceLow}
                       onChange={handleChange}
                     />
                   </InputGroup>
@@ -113,8 +135,10 @@ const SearchBox = ({ searchStore }) => {
                     <InputGroup.Addon>High</InputGroup.Addon>
                     <FormControl
                       type="text"
-                      placeholder="in dollars"
+                      placeholder="in dollars (max $150)"
                       name="priceHigh"
+                      pattern="\d{1,3}"
+                      value={searchStore.priceHigh}
                       onChange={handleChange}
                     />
                   </InputGroup>
@@ -123,9 +147,12 @@ const SearchBox = ({ searchStore }) => {
 
               <FormGroup>
                 <Col smOffset={2} sm={5}>
-                  <Button type="button" onClick={handleClick}>
-                    Search
-                  </Button>
+                  {searchStore.areDatesValid &&
+                    searchStore.arePricesValid && (
+                      <Button type="button" onClick={handleClick}>
+                        Search
+                      </Button>
+                    )}
                 </Col>
               </FormGroup>
             </Form>
