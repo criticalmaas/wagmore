@@ -1,4 +1,4 @@
-import { useStrict, action, observable, autorun, runInAction } from "mobx"
+import { useStrict, action, observable, computed, runInAction } from "mobx"
 import "isomorphic-fetch"
 
 useStrict(true)
@@ -23,6 +23,19 @@ class SearchStore {
     return tomorrow.setDate(tomorrow.getDate() + 1)
   }
 
+  @computed
+  get computeQueryString() {
+    let qs = {
+      query: {
+        start_date: this.dropOff,
+        end_date: this.pickUp,
+        centerlat: this.centerlat,
+        centerlng: this.centerlng
+      }
+    }
+    return qs
+  }
+
   @action
   setPropertyValue(prop, val) {
     this[prop] = val
@@ -43,24 +56,25 @@ class SearchStore {
         ? "https://cors-anywhere.herokuapp.com/"
         : ""
 
-    const roverAPIUrl = `https://www.rover.com/api/v3/search/overnight-boarding/?centerlat=${this
-      .centerlat}&centerlng=${this.centerlng}`
+    const roverAPIUrl =
+      "https://www.rover.com/api/v3/search/overnight-boarding/"
 
-    const res = await fetch(proxyUrl + roverAPIUrl, {
-      method: "GET",
-      headers: header,
-      mode: "cors",
-      cache: "default"
-    })
+    const res = await fetch(
+      proxyUrl + roverAPIUrl + encodeQueryString(this.computeQueryString.query)
+    )
     const json = await res.json()
     runInAction(() => {
       this.results = json.results
     })
   }
+}
 
-  disposable = autorun(() => {
-    //console.log("in autorun - somethings changed", this.results)
+export function encodeQueryString(params) {
+  var pairs = []
+  Object.keys(params).forEach(k => {
+    pairs.push(`${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
   })
+  return `?${pairs.join("&")}`
 }
 
 export function getOrCreateStore(isServer) {

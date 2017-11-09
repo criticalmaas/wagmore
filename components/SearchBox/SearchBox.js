@@ -54,7 +54,7 @@ const SearchBox = ({ searchStore }) => {
         <Row>
           <Col>
             <Form horizontal>
-              <FormGroup controlId="test">
+              <FormGroup>
                 <Col componentClass={ControlLabel} sm={2}>
                   <Glyphicon glyph="calendar" /> Date
                 </Col>
@@ -93,7 +93,7 @@ const SearchBox = ({ searchStore }) => {
                   </InputGroup>
                 </Col>
               </FormGroup>
-              <FormGroup controlId="price">
+              <FormGroup>
                 <Col componentClass={ControlLabel} sm={2}>
                   <Glyphicon glyph="usd" />Price
                 </Col>

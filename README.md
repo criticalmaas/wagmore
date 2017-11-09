@@ -57,7 +57,7 @@ Note: The latest production version is running at https://wagmore.now.sh but you
 
 2. Form field validation
 
-3. Better breakout of components
+3. Better breakout of components - SearchBox could br broken down into smaller pieces
 
 4. Styleguist is now broken renderign SearchResult component with addition of MobX provider
 
