@@ -6,11 +6,11 @@
 
 ```javascript
 {
-    "overnight-boarding": "https://www.rover.com/api/v3/search/dog-boarding/",
     "overnight-traveling": "https://www.rover.com/api/v3/search/overnight-traveling/",
     "drop-in": "https://www.rover.com/api/v3/search/drop-in/",
+    "dog-walking": "https://www.rover.com/api/v3/search/dog-walking/",
     "doggy-day-care": "https://www.rover.com/api/v3/search/doggy-day-care/",
-    "dog-walking": "https://www.rover.com/api/v3/search/dog-walking/"
+    "overnight-boarding": "https://www.rover.com/api/v3/search/overnight-boarding/"
 }
 ```
 
@@ -479,7 +479,7 @@ parameters.
 #### Location
 
 Location data must be provided. You can either give a center point which
-we will apply an appropriate zoom level, or you can provided a bounding
+we will apply an appropriate zoom level, or you can provide a bounding
 box in which the search will be performed.
 
 To specify a center point you must provide a latitude as the parameter

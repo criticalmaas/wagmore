@@ -1,0 +1,6 @@
+SearchResult example:
+
+
+```js
+    <SearchResult />
+```
