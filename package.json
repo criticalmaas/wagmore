@@ -17,7 +17,7 @@
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.4",
     "moment": "^2.19.1",
-    "next": "^4.1.4",
+    "next": "^4.2.3",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0"
